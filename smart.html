@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Shelter - ჭკვიანი თავშესაფარი</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #b5a8d6 0%, #d4cde8 100%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #7c6fb7 0%, #9b8ac4 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .header-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 35px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 15px;
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 80px auto;
+            padding: 80px 60px;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c6fb7, #9b8ac4);
+        }
+
+        section h2 {
+            color: #7c6fb7;
+            font-size: 2.5rem;
+            margin-bottom: 45px;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #7c6fb7, #9b8ac4);
+            border-radius: 2px;
+        }
+
+        /* Problem & Solution Grid */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .two-column p {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .two-column img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            margin: 30px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .two-column img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c6fb7, #9b8ac4);
+            border-radius: 20px 20px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(124,111,183,0.25);
+            border-color: #7c6fb720;
+        }
+
+        .step:hover::before {
+            opacity: 1;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step h3 {
+            color: #7c6fb7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            line-height: 1.4;
+        }
+
+        .step p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #666;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .step .tech-badge {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Architecture */
+        .diagram-image {
+            width: 100%;
+            max-width: 950px;
+            height: auto;
+            display: block;
+            margin: 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        /* Schema Container - for flowcharts and architecture */
+        .schema-container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid rgba(124,111,183,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .schema-container:hover {
+            box-shadow: 0 12px 35px rgba(124,111,183,0.18);
+            transform: translateY(-5px);
+        }
+
+        .schema-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .schema-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .schema-container p {
+            margin-top: 20px;
+            color: #666;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Components */
+        .component {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 45px;
+            padding: 35px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .component:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(124,111,183,0.2);
+        }
+
+        .component:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .component:nth-child(even):hover {
+            transform: translateX(-10px);
+        }
+
+        .component img {
+            min-width: 170px;
+            width: 170px;
+            height: 170px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .component-content h3 {
+            color: #7c6fb7;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        .component-content p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .component-content strong {
+            color: #333;
+        }
+
+        /* Logic Section */
+        .logic-section {
+            background: linear-gradient(135deg, #f0edf7 0%, #ffffff 100%);
+        }
+
+        .logic-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 45px;
+        }
+
+        .logic-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #7c6fb7;
+        }
+
+        .logic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(124,111,183,0.2);
+        }
+
+        .logic-card .icon {
+            font-size: 3rem;
+            margin-bottom: 18px;
+        }
+
+        .logic-card h3 {
+            color: #7c6fb7;
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .logic-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Energy Box */
+        .energy-box {
+            background: linear-gradient(135deg, #7c6fb7 0%, #9b8ac4 100%);
+            padding: 45px;
+            border-radius: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            flex-wrap: wrap;
+            box-shadow: 0 15px 50px rgba(124,111,183,0.35);
+        }
+
+        .energy-icon {
+            font-size: 4.5rem;
+        }
+
+        .energy-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .energy-content h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .energy-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .energy-cost {
+            background: rgba(255,255,255,0.2);
+            padding: 30px 45px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .energy-cost .label {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .energy-cost .value {
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        /* Camera Section */
+        .camera-container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #f8f9ff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .camera-container img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .camera-container p {
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        /* Timeline */
+        .timeline-horizontal {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 60px 20px;
+            gap: 25px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 75px;
+            left: 12%;
+            right: 12%;
+            height: 3px;
+            background: linear-gradient(90deg, #7c6fb7, #9b8ac4);
+            border-radius: 2px;
+        }
+
+        .timeline-step {
+            flex: 1;
+            position: relative;
+            text-align: center;
+        }
+
+        .timeline-dot {
+            width: 45px;
+            height: 45px;
+            background: #7c6fb7;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(124,111,183,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover .timeline-dot {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(124,111,183,0.6);
+        }
+
+        .timeline-step:last-child .timeline-dot {
+            background: #9b8ac4;
+            width: 52px;
+            height: 52px;
+            font-size: 1.5rem;
+        }
+
+        .timeline-month {
+            color: #7c6fb7;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .timeline-content {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Budget Table */
+        .budget-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 40px;
+        }
+
+        .budget-table thead tr {
+            background: linear-gradient(135deg, #7c6fb7 0%, #9b8ac4 100%);
+            color: white;
+        }
+
+        .budget-table thead th {
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .budget-table thead th:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .budget-table thead th:last-child {
+            border-radius: 0 12px 12px 0;
+            text-align: right;
+        }
+
+        .budget-table tbody tr {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            transition: all 0.3s ease;
+        }
+
+        .budget-table tbody tr:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(124,111,183,0.15);
+        }
+
+        .budget-table tbody td {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .budget-table tbody tr td:first-child {
+            border-radius: 12px 0 0 12px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .budget-table tbody tr td:last-child {
+            border-radius: 0 12px 12px 0;
+            text-align: right;
+            font-weight: 600;
+            color: #7c6fb7;
+            font-size: 1.05rem;
+        }
+
+        .budget-table .total-row {
+            background: linear-gradient(135deg, #7c6fb7 0%, #9b8ac4 100%) !important;
+        }
+
+        .budget-table .total-row td {
+            color: white !important;
+            font-size: 1.3rem;
+            padding: 22px 20px;
+            font-weight: 700;
+        }
+
+        /* Team */
+        .team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 35px;
+            margin-top: 45px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 35px 30px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 20px;
+            min-width: 250px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #7c6fb7;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(124,111,183,0.2);
+        }
+
+        .team-member-avatar {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, #7c6fb7, #9b8ac4);
+            border-radius: 50%;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(124,111,183,0.3);
+        }
+
+        .team-member h3 {
+            color: #7c6fb7;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .team-member a {
+            color: #9b8ac4;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .team-member a:hover {
+            color: #7c6fb7;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #3a3443 0%, #2a2631 100%);
+            color: white;
+            text-align: center;
+            padding: 45px 30px;
+            margin-top: 70px;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c6fb7, #9b8ac4);
+        }
+
+        footer p {
+            opacity: 0.92;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            section { padding: 45px 25px; margin: 30px 15px; }
+            section h2 { font-size: 2rem; }
+            .two-column { grid-template-columns: 1fr; gap: 35px; }
+            .component { flex-direction: column !important; }
+            .steps { grid-template-columns: 1fr; }
+            .schema-container { max-width: 100%; padding: 20px; }
+            .timeline-horizontal { flex-direction: column; padding: 40px 15px; }
+            .timeline-line { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-logo">
+                <img class="logo" src="ლოგო 1.png" alt="Ilia State University">
+            </div>
+            <h1>Smart Shelter</h1>
+            <p style="margin-top: 20px;">ჭკვიანი თავშესაფარი უპატრონო ცხოველებისთვის</p>
+        </div>
+    </header>
+
+    <!-- Problem -->
+    <section class="container" style="margin-top: 50px;">
+        <h2>პრობლემა</h2>
+        <div class="two-column">
+            <div>
+                <p>ურბანულ გარემოში უპატრონო ცხოველების გადარჩენა ზამთრის პერიოდში სერიოზულ სოციალურ და საინჟინრო გამოწვევას წარმოადგენს. არსებული პასიური თავშესაფრები ვერ უზრუნველყოფენ საჭირო სითბურ რეჟიმს, ხოლო სტანდარტული აქტიური გათბობის სისტემები მოკლებულია ავტომატიზაციას, რაც ენერგიის არაეფექტურ ხარჯვასა და მუდმივი მონიტორინგის შეუძლებლობას იწვევს.</p>
+            </div>
+            <div>
+                <img src="ძაღლი 1.png" alt="თავშესაფარი ზამთარში">
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="container">
+        <h2>გამოსავალი</h2>
+        <div class="two-column">
+            <div>
+                <p>ჩვენი გამოსავალია „ჭკვიანი თავშესაფარი", რომელიც STM32 მიკროკონტროლერისა და ToF სენსორის მეშვეობით ავტომატურად აფიქსირებს ცხოველის ყოფნას და მხოლოდ ამ შემთხვევაში ააქტიურებს გათბობის სისტემას.</p>
+            </div>
+            <div>
+                <img src="მეორე ძაღლი.jpg" alt="Smart Shelter">
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="container" style="background: linear-gradient(135deg, #f8f4ff 0%, #ffffff 100%);">
+        <h2>როგორ მუშაობს</h2>
+        <p style="text-align: center; margin-bottom: 45px; font-size: 1.25rem; color: #666; max-width: 700px; margin-left: auto; margin-right: auto;">ხუთი ეტაპიანი ავტომატური სისტემა ცხოველების უსაფრთხოებისთვის</p>
+        
+        <div class="steps">
+            <div class="step" style="background: linear-gradient(135deg, #e8e0ff 0%, #ffffff 100%); border-top: 5px solid #7c6fb7;">
+                <div style="position: absolute; top: 15px; right: 15px; font-size: 2.5rem; opacity: 0.15;">📏</div>
+                <div class="step-icon">📏</div>
+                <h3>1. მანძილის ლაზერული სენსორი</h3>
+                <p>ცხოველის იდენტიფიკაცია რეალურ დროში. Time-of-Flight(ToF) ტექნოლოგია საშუალებას გვაძლევს მილიმეტრის სიზუსტით განვსაზღვროთ თავშესაფარში ბინადარის ყოფნა. ეს მონაცემი არის სისტემის მთავარი პირობა გათბობის ავტომატური ჩართვისას</p>
+                <div class="tech-badge" style="background: rgba(124,111,183,0.1); color: #7c6fb7;">
+                    <strong>2 მეტრამდე გაზომვის დიაპაზონი</strong>
+                </div>
+            </div>
+            
+            <div class="step" style="background: linear-gradient(135deg, #e0f2ff 0%, #ffffff 100%); border-top: 5px solid #5b9bd5;">
+                <div style="position: absolute; top: 15px; right: 15px; font-size: 2.5rem; opacity: 0.15;">🖥️</div>
+                <div class="step-icon">🖥️</div>
+                <h3>2. სისტემის ცენტრალური ჰაბი</h3>
+                <p>მაღალი წარმადობის და დაბალი ენერგომოხმარების მიკროკონტროლერი. ის წარმოადგენს "ტვინს" რომელიც UART და I2C ინტერფეისებით აკონტროლებს ყველა სენსორს და მართვის მონაცემთა ნაკადს SIM800C მოდულისკენ</p>
+                <div class="tech-badge" style="background: rgba(91,155,213,0.1); color: #5b9bd5;">
+                    <strong>ARM Cortex-M4 ბირთვი</strong>
+                </div>
+            </div>
+            
+            <div class="step" style="background: linear-gradient(135deg, #ffe0e0 0%, #ffffff 100%); border-top: 5px solid #e85d75;">
+                <div style="position: absolute; top: 15px; right: 15px; font-size: 2.5rem; opacity: 0.15;">🌡️</div>
+                <div class="step-icon">🌡️</div>
+                <h3>3. ტემპერატურის კონტროლი</h3>
+                <p>გარემო პირობების მუდმივი მონიტორინგი. სენსორი უწყვეტ რეჟიმში ზომავს თავშესაფრის შიდა ტემპერატურას. მიღებული მონაცემები გადამწყვეტია სისტემის ავტომატიზაციისთვის-თუ ტემპერატურა 18°C-ზე დაბლა ჩამოვა, მიკროკონტროლერი მომენტალურად აანალიზებს ვითარებას და საჭიროების შემთხვევაში ააქტიურბეს გათბობას.</p>
+                <div class="tech-badge" style="background: rgba(232,93,117,0.1); color: #e85d75;">
+                    <strong>გაზომვის სიზუსტე ±0.5°C</strong>
+                </div>
+            </div>
+            
+            <div class="step" style="background: linear-gradient(135deg, #fff5e0 0%, #ffffff 100%); border-top: 5px solid #ff9f43;">
+                <div style="position: absolute; top: 15px; right: 15px; font-size: 2.5rem; opacity: 0.15;">📡</div>
+                <div class="step-icon">📡</div>
+                <h3>4. GSM/GPRS კომუნიკაცია</h3>
+                <p>სრული ავტონომიურობა Wi-Fi-ს გარეშე. SIM800C მოდული უზრუნველყოფს მონაცემთა გადაცემას მობილური ქსელის მეშვეობით. HTTP POST პროტოკოლით ტელემეტრია პირდაპირ Go სერვერზე იგზავნება, რაც სისტემას ხელმისაწვდომს ხდის ნებისმიერ ლოკაციაზე.</p>
+                <div class="tech-badge" style="background: rgba(255,159,67,0.1); color: #ff9f43;">
+                    <strong>Quad-band 850/900/1800/1900 MHz</strong>
+                </div>
+            </div>
+            
+            <div class="step" style="background: linear-gradient(135deg, #e0ffe0 0%, #ffffff 100%); border-top: 5px solid #52c41a;">
+                <div style="position: absolute; top: 15px; right: 15px; font-size: 2.5rem; opacity: 0.15;">📹</div>
+                <div class="step-icon">📹</div>
+                <h3>5. ვიდეო მონიტორინგი</h3>
+                <p>უსაფრთხოების მაღალი სტანდარტი და ვიზუალური კონტროლი. 2K რეზოლუციის მქონე Tapo C310 კამერა უზრუნველყოფს თავშესაფრის 24 საათიან ვიდეო მონიტორინგს. RTSP პროტოკოლის გამოყენებით, ლაივ-გამოსახულება პირდაპირ ინტეგრირებულია ვებ-გვერდზე. ეს გამჭვირვალობა საშუალებას გაძლევთ ნებისმიერ დროს დაინახოთ თქვენი მზრუნველობის შედეგი.</p>
+                <div class="tech-badge" style="background: rgba(82,196,26,0.1); color: #52c41a;">
+                    <strong>3MP Ultra-HD + ღამის ხედვა</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 50px; text-align: center; padding: 30px; background: linear-gradient(135deg, #7c6fb7 0%, #9b8ac4 100%); border-radius: 20px; color: white; box-shadow: 0 10px 40px rgba(124,111,183,0.3);">
+            <div style="font-size: 2rem; margin-bottom: 15px;">⚡ ავტომატური პროცესი</div>
+            <p style="font-size: 1.15rem; opacity: 0.95; max-width: 650px; margin: 0 auto;">
+                სისტემა მუშაობს სრულიად ავტონომურად, უზრუნველყოფს ოპტიმალურ ენერგოეფექტურობას და ცხოველის მაქსიმალურ კომფორტს.
+            </p>
+        </div>
+    </section>
+
+    <!-- Components -->
+    <section class="container">
+        <h2>კომპონენტები</h2>
+        
+        <div class="component">
+            <img src="სენსორი.png" alt="VL53L0X Sensor">
+            <div class="component-content">
+                <h3>VL53L0X Time-of-Flight სენსორი</h3>
+                <p><strong>ტექნოლოგია:</strong> ინფრაწითელი ლაზერი ზომავს დროს, რომელიც სჭირდება სინათლეს ობიექტამდე მისვლასა და უკან დაბრუნებისთვის.</p>
+                <p><strong>სიზუსტე:</strong> მილიმეტრული დონე, არ რეაგირებს ცრუ სიგნალებზე</p>
+                <p><strong>კავშირი:</strong> I2C პროტოკოლი, 3.3V კვება</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="მიკროკონტროლერი.png" alt="STM32 Board">
+            <div class="component-content">
+                <h3>STM32L476RG მიკროკონტროლერი</h3>
+                <p><strong>პროცესორი:</strong> ARM Cortex-M4F (80 MHz) FPU-ით</p>
+                <p><strong>ენერგოეფექტურობა:</strong> L4 სერია - დაბალი მოხმარება sleep რეჟიმში</p>
+                <p><strong>ლოგიკა:</strong> 3.3V სიგნალი მართავს SSR რელეს</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="რელე.png" alt="SSR Relay">
+            <div class="component-content">
+                <h3>DC-DC Solid State Relay (SSR)</h3>
+                <p><strong>მართვა:</strong> 3.3V ლოგიკური სიგნალი STM32-დან</p>
+                <p><strong>გადართვა:</strong> ოპტიკური იზოლატორი ხურავს 12V სიმძლავრის ტერმინალებს</p>
+                <p><strong>უსაფრთხოება:</strong> გალვანური იზოლაცია</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="გათბობა.png" alt="12V Heating Film">
+            <div class="component-content">
+                <h3>12V 88W გათბობის ფირი</h3>
+                <p><strong>სიმძლავრე:</strong> 88W (7.33A @ 12V)</p>
+                <p><strong>ფართობი:</strong> 0.8 მ² (თავშესაფრის იატაკი)</p>
+                <p><strong>უსაფრთხოება:</strong> 12V დაბალი ძაბვა გამორიცხავს ელექტროშოკის რისკს</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="ტემპერსტურა.png" alt="DHT22 Sensor">
+            <div class="component-content">
+                <h3>DHT22 ტემპერატურის სენსორი</h3>
+                <p><strong>დიაპაზონი:</strong> -40°C - +80°C</p>
+                <p><strong>თერმოსტატი:</strong> გათბობა ჩაირთვება < 18°C-ზე, გაითიშება > 25°C-ზე</p>
+                <p><strong>მიზანი:</strong> გადახურების თავიდან აცილება</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="ადაპტერი.png" alt="12V Adapter">
+            <div class="component-content">
+                <h3>12V 8A DC ადაპტერი</h3>
+                <p><strong>ფუნქცია:</strong> 220V AC → 12V DC გარდაქმნა</p>
+                <p><strong>სიმძლავრე:</strong> 8A რეიტინგი (გათბობა მოითხოვს 7.33A)</p>
+                <p><strong>უსაფრთხოება:</strong> დაბალი ძაბვა გარე პირობებისთვის</p>
+            </div>
+        </div>
+
+        <div class="component">
+            <img src="კამერას სურათი.png" alt="Tapo Camera">
+            <div class="component-content">
+                <h3>Tapo C310 IP კამერა</h3>
+                <p><strong>კავშირი:</strong> Wi-Fi Router → RTSP Streaming</p>
+                <p><strong>ფუნქცია:</strong> უწყვეტი ვიდეო ნაკადი და ვიზუალური დადასტურება</p>
+                <p><strong>კვება:</strong> 220V AC (დამოუკიდებელი კონტროლის სისტემისგან)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logic Section -->
+    <section class="container logic-section">
+        <h2>სისტემის ინტელექტი</h2>
+        
+        <div class="logic-cards">
+            <div class="logic-card">
+                <div class="icon">🔍</div>
+                <h3>1. იდენტიფიკაცია</h3>
+                <p>სენსორი ამოწმებს მანძილს. თუ მანძილი 70 სმ-ზე ნაკლებია, ირთვება გათბობა.</p>
+            </div>
+            
+            <div class="logic-card">
+                <div class="icon">🌡️</div>
+                <h3>2. თერმოსტატი</h3>
+                <p>თუ ტემპერატურა არის < 18°C, მაშინ გათბობა ირთვება. თუ > 25°C, ითიშება.</p>
+            </div>
+            
+            <div class="logic-card">
+                <div class="icon">🔥</div>
+                <h3>3. გააქტიურება</h3>
+                <p>ორივე პირობის შესრულებისას ირთვება გათბობა.</p>
+            </div>
+        </div>
+
+        <div class="energy-box">
+            <div class="energy-icon">⚡</div>
+            <div class="energy-content">
+                <h4>ენერგოეფექტურობის ფორმულა</h4>
+                <p>ტრადიციული სისტემებისგან განსხვავებით, ჩვენი ტექნოლოგია ზოგავს რესურსის <strong>60%-ზე მეტს</strong>, რადგან მუშაობს მხოლოდ "მოთხოვნისას".</p>
+            </div>
+            <div class="energy-cost">
+                <div class="label">თვიური ხარჯი</div>
+                <div class="value">~ 14.36 ₾</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logic Flow Schema -->
+    <section class="container">
+        <h2>სისტემის მუშაობის ლოგიკური სქემა</h2>
+        <div class="schema-container">
+            <img src="ლოგიკური სქემა.png" alt="სისტემის მუშაობის ლოგიკური სქემა">
+            <p>დეტალური flowchart სქემა, რომელიც წარმოაჩენს სისტემის გადაწყვეტილების მიღების პროცესს</p>
+        </div>
+    </section>
+
+    <!-- System Architecture -->
+    <section class="container" style="background: linear-gradient(135deg, #f8f4ff 0%, #ffffff 100%);">
+        <h2>სისტემის არქიტექტურა</h2>
+        <div class="schema-container" style="background: white;">
+            <img src="არქიტექტურია სისტემის.png" alt="სისტემის არქიტექტურა">
+            <p>სრული არქიტექტურული სქემა, რომელიც აჩვენებს ყველა კომპონენტის ურთიერთკავშირს</p>
+        </div>
+    </section>
+
+    <!-- Camera Section -->
+    <section class="container">
+        <h2>ლაივ კამერა</h2>
+        <div class="camera-container">
+            <img src="ლაივ კამერა.png" alt="Stream Architecture">
+            <p>ნაკადის გადაცემის სქემა: Tapo C310 → RTSP → MediaMTX → WebRTC</p>
+        </div>
+    </section>
+
+    <!-- Work Schedule -->
+    <section class="container">
+        <h2>სამუშაო განრიგი</h2>
+        <div style="text-align: center; margin-top: 35px; margin-bottom: 50px;">
+            <img src="განტის დიაგრამ.png" alt="Gantt Diagram" style="width: 100%; max-width: 900px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); margin: 0 auto; display: block;">
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container">
+        <h2>პროექტის განვითარების გზა</h2>
+        <div class="timeline-horizontal">
+            <div class="timeline-line"></div>
+            <div class="timeline-step">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-month">მარტი</div>
+                <div class="timeline-content">MCU-ს დაპროგრამება & სენსორების (ToF & DHT22) ინტეგრაცია</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-month">აპრილი</div>
+                <div class="timeline-content">თავშესაფრის ფიზიკური კონსტრუქციის აწყობა. გათბობის მონტაჟი</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-month">მაისი</div>
+                <div class="timeline-content">Tapo კამერის კონფიგურაცია & Go სერვერის შექმნა</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">4</div>
+                <div class="timeline-month">ივნისი</div>
+                <div class="timeline-content">ვებ-ინტერფეისის (Frontend) აწყობა და ვიზუალიზაცია</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">🚀</div>
+                <div class="timeline-month">ივლისი</div>
+                <div class="timeline-content"><strong>სისტემის საბოლოო ტესტირება და დოკუმენტაციის მომზადება</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget -->
+    <section class="container" style="padding: 80px 50px;">
+        <h2>პროექტის ბიუჯეტი</h2>
+        <table class="budget-table">
+            <thead>
+                <tr>
+                    <th>კომპონენტი</th>
+                    <th>რაოდენობა</th>
+                    <th>ფასი (ლარი)</th>
+                    <th>ჯამური ფასი (ლარი)</th>
+                    <th>წყარო</th>
+                    <th style="text-align: right;">კომენტარი</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>მიკროკონტროლერი STM32L476RG</td>
+                    <td>1</td>
+                    <td>64.70</td>
+                    <td>101.07</td>
+                    <td>Amazon</td>
+                    <td>ჯამურ ფასში შემოვლენაშია პროდუქტის ფასი + ტრანსპორტირება</td>
+                </tr>
+                <tr>
+                    <td>მანძილის სენსორი VL53L0X ToF</td>
+                    <td>1</td>
+                    <td>6.29</td>
+                    <td>6.29</td>
+                    <td>Temu</td>
+                    <td>ტრანსპორტირება არის უფასო</td>
+                </tr>
+                <tr>
+                    <td>ტემპერატურის სენსორი DHT22</td>
+                    <td>1</td>
+                    <td>2.27</td>
+                    <td>3.69</td>
+                    <td>AliExpress</td>
+                    <td>ჯამურ ფასში შედის პროექტის ფასი + ტრანსპორტირება</td>
+                </tr>
+                <tr>
+                    <td>კამერა TP-Link Tapo C310 Wi-Fi</td>
+                    <td>1</td>
+                    <td>169.00</td>
+                    <td>169.00</td>
+                    <td>Alta/ალტა</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>ადაპტერი 12V 8A</td>
+                    <td>1</td>
+                    <td>32.81</td>
+                    <td>72.28</td>
+                    <td>Amazon</td>
+                    <td>ჯამურ ფასში შედის პროექტის ფასი + ტრანსპორტირება</td>
+                </tr>
+                <tr>
+                    <td>IP65</td>
+                    <td>1</td>
+                    <td>18.85</td>
+                    <td>57.96</td>
+                    <td>Amazon</td>
+                    <td>ჯამურ ფასში შედის პროექტის ფასი + ტრანსპორტირება</td>
+                </tr>
+                <tr>
+                    <td>გათბობის ფირი 12V</td>
+                    <td>2</td>
+                    <td>12.51</td>
+                    <td>25.02</td>
+                    <td>Alibaba</td>
+                    <td>ჯამური ფასი არის ორი ფირისთვის</td>
+                </tr>
+            
+                <tr>
+                    <td>რელე DC DC SSR</td>
+                    <td>1</td>
+                    <td>6.75</td>
+                    <td>25.01</td>
+                    <td>Aliexpress</td>
+                    <td>ჯამურ ფასში შედის პროექტის ფასი + ტრანსპორტირება</td>
+                </tr>
+                <tr>
+                    <td>Digital Ocean სერვერი</td>
+                    <td>1</td>
+                    <td>15.99</td>
+                    <td>15.99</td>
+                    <td>Digital Ocean</td>
+                    <td>—</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="5"><strong>ჯამი:</strong></td>
+                    <td><strong>476.31 ₾</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Team -->
+    <section class="container">
+        <h2>გუნდი</h2>
+        <div class="team">
+            <div class="team-member">
+                <div class="team-member-avatar">თ</div>
+                <h3>თამარ ჯაში</h3>
+                <p>📧 <a href="mailto:tamar.jashi.1@iliauni.edu.ge">tamar.jashi.1@iliauni.edu.ge</a></p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-avatar">გ</div>
+                <h3>გრიშა ტონერიანი</h3>
+                <p>📧 <a href="mailto:grisha.toneryan.1@iliauni.edu.ge">grisha.toneryan.1@iliauni.edu.ge</a></p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-avatar">მ</div>
+                <h3>მარი დავლაძე</h3>
+                <p>📧 <a href="mailto:mari.davladze.1@iliauni.edu.ge">mari.davladze.1@iliauni.edu.ge</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="position: relative;">
+        <p style="font-size: 1.2rem; margin-bottom: 12px;">ილიას სახელმწიფო უნივერსიტეტი © 2025</p>
+        <p style="opacity: 0.85;">Smart Shelter - დამამთავრებელი კურსის დიზაინის პროექტი A</p>
+    </footer>
+</body>
+</html>
